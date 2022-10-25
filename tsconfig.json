@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    
+    /* Javascript version */
+    "target": "ES6",
+
+    /* Module resolution */
+    "module": "ES6",
+    "esModuleInterop": true, /* Necessary to use "type": "module" */
+    "moduleResolution": "Node",
+
+    /* Compilation output */
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true
+  }
+}
