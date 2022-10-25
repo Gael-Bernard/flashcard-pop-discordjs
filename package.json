@@ -1,0 +1,15 @@
+{
+  "name": "flashcard-pop-discordjs",
+  "version": "1.0.0",
+  "description": "A DiscordJS bot to add pop-up flashcards to your guild",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@serious.github.com:Gael-Bernard/flashcard-pop-discordjs.git"
+  },
+  "author": "",
+  "license": "MIT"
+}
