@@ -1,5 +1,16 @@
+import dotenv from "dotenv"
+dotenv.config();
+
 import { Client, Events, GatewayIntentBits } from "discord.js"
 
+const client = new Client({intents: [
+  GatewayIntentBits.GuildMessages
+]})
 
 
-console.log("Hello world!");
+client.once(Events.ClientReady, c => {
+  console.log(`${new Date()} | Bot logged in as ${c.user.tag}`);
+});
+
+
+client.login(process.env.BOT_TOKEN);
