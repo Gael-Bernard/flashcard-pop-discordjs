@@ -6,8 +6,8 @@
   "type": "module",
 
   "scripts": {
-    "compile": "tsc",
-    "start": "ts-node-esm src/app.ts",
+    "compile": "tsc && node dist/app.js",
+    "start": "ts-node-esm src/app.js",
     "nocheck": "ts-node-esm --transpileOnly src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
