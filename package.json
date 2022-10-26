@@ -7,14 +7,14 @@
 
   "scripts": {
     "compile": "tsc && node dist/app.js",
-    "start": "ts-node-esm src/app.ts",
+    "start": "ts-node-esm src/app.js",
     "nocheck": "ts-node-esm --transpileOnly src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 
   "repository": {
     "type": "git",
-    "url": "git@github.com:Gael-Bernard/flashcard-pop-discordjs.git"
+    "url": "git@serious.github.com:Gael-Bernard/flashcard-pop-discordjs.git"
   },
   "author": "",
   "license": "MIT",
