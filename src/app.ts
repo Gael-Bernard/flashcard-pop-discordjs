@@ -7,8 +7,9 @@ import declareOnMessageResponse from "./messageEvent/onMessage.js";
 
 
 const client = new Client({intents: [
+  GatewayIntentBits.Guilds,
   GatewayIntentBits.GuildMessages
-]})
+]});
 
 
 // Whenever the bot gets online

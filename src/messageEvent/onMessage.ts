@@ -5,12 +5,13 @@ import { Client } from "discord.js";
  * @param client The bot's DiscordJS client
  */
 export default function declareOnMessageResponse(client:Client) {
+  console.log("DECLARE")
   client.on("messageCreate", msg => {
     
     if(msg.author.bot)
       return;
     
-    console.log(msg.content);
+    console.log("Content : "+msg.content+" auth: "+msg.author); // Message not displayed because a 3rd intent is necessary. Though we don't need it
     
   });
 }
