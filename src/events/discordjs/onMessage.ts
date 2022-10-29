@@ -1,6 +1,6 @@
-import { Client, EmbedBuilder, GuildChannel, TextBasedChannelMixin, TextChannel } from "discord.js";
+import { Client, TextChannel } from "discord.js";
 
-import getFlashcardsOf from "../../database/getFlashcards.js";
+import UserFlashcards from "../../database/UserFlashcards.js";
 import Flashcard from "../../datastructures/Flashcard.js";
 import FlashcardSender from "../../interactions/FlashcardSender.js";
 import GuildAllFlashcard from "../../interactions/guild_all_flashcard_popup/GuildAllFlashcard.js";
@@ -12,7 +12,7 @@ import GuildAllFlashcard from "../../interactions/guild_all_flashcard_popup/Guil
  * @param client The bot's DiscordJS client
  */
 export default function declareOnMessageResponse(client:Client) {
-  client.on("messageCreate", msg => {
+  client.on("messageCreate", async (msg) => {
 
     if(msg.author.bot) // We only listen to users
       return;
@@ -29,7 +29,7 @@ export default function declareOnMessageResponse(client:Client) {
     
     
     // Get the user's flashcards and check if there's at least one
-    const flashcards:Array<Flashcard> = getFlashcardsOf(msg.author.id);
+    const flashcards:Array<Flashcard> = await UserFlashcards.getFlashcardsOf(msg.author.id);
     const flashcard: Flashcard|undefined = flashcards.at( Math.trunc( flashcards.length * Math.random() ) );
     if(!flashcard) { // If the user has no flashcard
       return;
