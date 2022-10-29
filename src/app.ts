@@ -4,6 +4,7 @@ dotenv.config();
 import { Client, Events, GatewayIntentBits } from "discord.js"
 
 import declareOnMessageResponse from "./events/discordjs/onMessage.js";
+import registerCommands from "./commands copy/cmdInit.js";
 
 
 const client = new Client({intents: [
@@ -18,6 +19,9 @@ client.once(Events.ClientReady, c => {
 
   // Declare the functions triggered by events
   declareOnMessageResponse(client);
+
+  // Declare/register DiscordJS commands
+  registerCommands(client);
 });
 
 
