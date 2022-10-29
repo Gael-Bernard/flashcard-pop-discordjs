@@ -12,6 +12,10 @@
     /* Compilation output */
     "outDir": "dist",
     "declaration": true,
-    "declarationMap": true
-  }
+    "declarationMap": true,
+
+    /* Strict rules */
+    "strictNullChecks": true // Undefined & null have to be explicitly mentioned as types
+  },
+  
 }
