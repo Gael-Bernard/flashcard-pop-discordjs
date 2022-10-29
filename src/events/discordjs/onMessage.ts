@@ -1,8 +1,9 @@
-import { Client, Embed, EmbedBuilder } from "discord.js";
+import { Client, EmbedBuilder, GuildChannel, TextBasedChannelMixin, TextChannel } from "discord.js";
 
-import createFlashcardPopup from "../../bot_messages/createFlashcardPopup.js";
 import getFlashcardsOf from "../../database/getFlashcards.js";
 import Flashcard from "../../datastructures/Flashcard.js";
+import FlashcardSender from "../../interactions/FlashcardSender.js";
+import GuildAllFlashcard from "../../interactions/guild_all_flashcard_popup/GuildAllFlashcard.js";
 
 /* NOTE Messages contain an empty msg.content, because a specific intent is necessary to access the content. Though we don't need it */
 
@@ -12,23 +13,32 @@ import Flashcard from "../../datastructures/Flashcard.js";
  */
 export default function declareOnMessageResponse(client:Client) {
   client.on("messageCreate", msg => {
-    
+
     if(msg.author.bot) // We only listen to users
+      return;
+    
+    const channel = msg.channel;
+    if( !(channel instanceof TextChannel) ) // Leave if not a text channel
+      return;
+    
+    if(!msg.member) // Leave if not in a guild
       return;
     
     if(Math.random() < 0.5) // We randomly choose to give a flashcard or not
       return;
     
+    
+    // Get the user's flashcards and check if there's at least one
     const flashcards:Array<Flashcard> = getFlashcardsOf(msg.author.id);
-    if(flashcards.length == 0) { // If the user has no flashcard
+    const flashcard: Flashcard|undefined = flashcards.at( Math.trunc( flashcards.length * Math.random() ) );
+    if(!flashcard) { // If the user has no flashcard
       return;
     }
     
-    // Pick random flashcard
-    const flashcard:Flashcard = flashcards.at( Math.trunc( flashcards.length * Math.random() ) );
     
-    // Display
-    const embed:EmbedBuilder = createFlashcardPopup(flashcard);
-    msg.reply({ embeds:[embed] });
+    // Send the flashcard
+    const sender:FlashcardSender = new GuildAllFlashcard(channel, flashcard, msg.member);
+    sender.send();
+    
   });
 }
