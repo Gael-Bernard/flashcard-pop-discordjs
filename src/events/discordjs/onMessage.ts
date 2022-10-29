@@ -19,7 +19,7 @@ export default function declareOnMessageResponse(client:Client) {
     if(Math.random() < 0.5) // We randomly choose to give a flashcard or not
       return;
     
-    const flashcards:Flashcard[] = getFlashcardsOf(msg.author.id);
+    const flashcards:Array<Flashcard> = getFlashcardsOf(msg.author.id);
     if(flashcards.length == 0) { // If the user has no flashcard
       return;
     }
