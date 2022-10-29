@@ -3,7 +3,7 @@ dotenv.config();
 
 import { Client, Events, GatewayIntentBits } from "discord.js"
 
-import declareOnMessageResponse from "./messageEvent/onMessage.js";
+import declareOnMessageResponse from "./events/discordjs/onMessage.js";
 
 
 const client = new Client({intents: [
