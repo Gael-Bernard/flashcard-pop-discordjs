@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "discord.js";
+import { SharedSlashCommandOptions, SlashCommandBuilder } from "discord.js";
 
 import ping from "./list/ping.js";
 
@@ -8,7 +8,7 @@ import ping from "./list/ping.js";
  * Used to declare commands in src/commands/list
  */
  export type SlashCommandExe = {
-  slashCommand: SlashCommandBuilder,
+  slashCommand: SlashCommandBuilder | SharedSlashCommandOptions | unknown,
   execute: (ChatInputCommandInteraction) => void
 };
 
