@@ -15,8 +15,10 @@ export default class UserFlashcards {
     return new Promise( success => {
       
       success([
-        { front: "Salut", back:"Hi" },
-        { front: "Bonjour", back: "*Good morning* in the morning, *good afternoon* on the afternoon" }
+        { front: "Hi in French", back:"Salut" },
+        { front: "Yo in French", back: "Yo" },
+        { front: "Name of the Typescript loop with a predetermined number of loops", back: "for" },
+        { front: "Keyword to declare a variable (a box yay) in Typescript", back: "let" }
       ]);
     
     });
