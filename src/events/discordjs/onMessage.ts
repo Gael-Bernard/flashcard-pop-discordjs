@@ -24,7 +24,7 @@ export default function declareOnMessageResponse(client:Client) {
     if(!msg.member) // Leave if not in a guild
       return;
     
-    if(Math.random() < 0.5) // We randomly choose to give a flashcard or not
+    if(Math.random() > 0.02) // We randomly choose to give a flashcard or not
       return;
     
     
