@@ -28,8 +28,9 @@ async function registerToDiscord(client:Client) {
 	// @ts-ignore
 	const botDiscordId:string = client.user.id;
   const commands = rawCommands.map(c => c.slashCommand);
-	await rest.put(Routes.applicationCommands(botDiscordId), { body: commands });
-	console.log(`\nSuccessfully registered ${commands.length} slash commands to Discord :\n${commands.map(c => c.name+"\n")}`);
+	const result = await rest.put(Routes.applicationCommands(botDiscordId), { body: commands });
+  // @ts-ignore
+	console.log(`\nSuccessfully registered ${commands.length} slash commands to Discord :\n${commands.reduce( (val,c) => val+"- "+c.name+"\n", "")}`);
 }
 
 
@@ -37,6 +38,7 @@ async function registerToCmdRegistry() {
   
   console.log(`Registering commands in the bot's commands registry`);
   rawCommands.forEach(cmd => {
+    // @ts-ignore
     const name = cmd.slashCommand.name;
     console.log(`Registering command ${name}...`);
     cmdRegistry[name] = cmd;
