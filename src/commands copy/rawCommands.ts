@@ -1,5 +1,6 @@
 import { SharedSlashCommandOptions, SlashCommandBuilder } from "discord.js";
 
+import answer from "./list/answer.js";
 import ping from "./list/ping.js";
 
 
@@ -17,7 +18,8 @@ import ping from "./list/ping.js";
  * List of SlashCommandBuilder, that will have to be registered by the init function.
  */
 const rawCommands: SlashCommandExe[] = [
-  ping
+  ping,
+  answer
 ]
 export default rawCommands;
 

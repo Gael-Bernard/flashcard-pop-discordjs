@@ -1,5 +1,6 @@
 import { EmbedBuilder, GuildChannel, GuildMember, TextChannel } from "discord.js";
 
+import ActiveChannels from "../../database/ActiveChannels.js";
 import Flashcard from "../../datastructures/Flashcard.js";
 import FlashcardSender from "../FlashcardSender.js";
 
@@ -26,7 +27,7 @@ export default class GuildAllFlashcard extends FlashcardSender {
   
     const description = 
         "Front of your flashcard : **"+this.flashcard.front+"**"
-        +"\n\n*Type the ``/notdefinedyet [your-answer]`` command to tell me what you think is at the back!*"
+        +"\n*Type the ``/answer [your-guess]`` command to tell me what you think is at the back!*"
     ;
     
     return new EmbedBuilder()
@@ -39,6 +40,7 @@ export default class GuildAllFlashcard extends FlashcardSender {
   public send() {
     const embed:EmbedBuilder = this.createFlashcardPopup();
     this.channel.send({ embeds:[embed] });
+    ActiveChannels.setFlashcardForChannel(this.channel.id, this.flashcard);
   }
 
 }
