@@ -1,5 +1,6 @@
 import Flashcard from "../datastructures/Flashcard.js";
-import FlashcardChannel from "../datastructures/FlashcardChannel.js";
+import FlashcardChannel, { FlashcardChannelAllopt } from "../datastructures/FlashcardChannel.js";
+import { ChannelNotConfiguredError } from "./exceptions/ConfiguredChannelsError.js";
 
 
 /**
@@ -7,26 +8,30 @@ import FlashcardChannel from "../datastructures/FlashcardChannel.js";
  */
 export default class ConfiguredChannels {
 
-  static readonly DEFAULT_POPUP_PROBABILITY = 0.02;
+  private static DEFAULT_FLASHCARDCHANNEL: FlashcardChannel = {
+    uuid: "NEVER DEFINED",
+    popProbability: 0.02,
+    currentFlashcard: undefined
+  };
 
 
   protected static channelFlashcards: Map<string, FlashcardChannel> = new Map<string, FlashcardChannel>();
 
 
   /**
-   * Creates a new FlashcardChannel when a necessary one could not be found
+   * Configures a new channel, making it available in the database
    * @param uuid channel UUID
    * @param probability Probability for popup flashcards in the channel
    */
-  private static activateChannel(uuid:string, probability:number): FlashcardChannel {
+  public static configureChannel(uuid:string, configuration:FlashcardChannelAllopt): FlashcardChannel {
     
-    const channel: FlashcardChannel = {
-      uuid,
-      popProbability: probability
-    };
+    // Filling the configuration with default and explicit parameters
+    let default_config = Object.assign({}, this.DEFAULT_FLASHCARDCHANNEL);
+    const channel: FlashcardChannel = Object.assign(default_config, configuration);
+    channel.uuid = uuid;
 
     this.channelFlashcards.set(uuid, channel);
-    return channel;
+    return Object.assign({}, channel);
   }
 
 
@@ -59,19 +64,16 @@ export default class ConfiguredChannels {
   /**
    * Sets or replaces the active flashcard of a channel
    * @param uuid channel UUID
-   * @param flashcard 
+   * @param flashcard new flashcard
+   * @throws ChannelNotConfiguredError
    */
   public static setFlashcardForChannel(uuid:string, flashcard:Flashcard): void {
-    const channel = this.getChannel(uuid);
     
-    if(channel) {
-      channel.currentFlashcard = Object.assign({}, flashcard);
-    }
-    else {
-      const newChannel = this.activateChannel(uuid, this.DEFAULT_POPUP_PROBABILITY);
-      newChannel.currentFlashcard = Object.assign({}, flashcard);
-    }
-      
+    const channel = this.getChannel(uuid);
+    if(!channel)
+      throw new ChannelNotConfiguredError(uuid);
+
+    channel.currentFlashcard = Object.assign({}, flashcard);
   }
 
 
@@ -102,21 +104,18 @@ export default class ConfiguredChannels {
 
 
   /**
-   * Defines or redefines the probability that a flashcard pops up in the specified channel
+   * Redefines the probability that a flashcard pops up in the specified channel
    * @param uuid channel UUID
    * @param probability number between 0 and 1
+   * @throws ChannelNotConfiguredError
    */
   public static setPopupProbaForChannel(uuid:string, probability:number): void {
     
     const channel = this.getChannel(uuid);
+    if(!channel)
+      throw new ChannelNotConfiguredError(uuid);
     
-    if(channel) {
-      channel.popProbability = probability;
-    }
-
-    else {
-      this.activateChannel(uuid, probability);
-    }
+    channel.popProbability = probability;
   }
 
 
