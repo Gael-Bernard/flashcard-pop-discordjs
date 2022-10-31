@@ -5,7 +5,7 @@ import FlashcardChannel from "../datastructures/FlashcardChannel.js";
 /**
  * Manages the currently active channels and their flashcards
  */
-export default class ActiveChannels {
+export default class ConfiguredChannels {
 
   static readonly DEFAULT_POPUP_PROBABILITY = 0.02;
 

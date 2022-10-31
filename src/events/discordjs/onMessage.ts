@@ -1,6 +1,6 @@
 import { Client, TextChannel } from "discord.js";
 
-import ActiveChannels from "../../database/ActiveChannels.js";
+import ConfiguredChannels from "../../database/ConfiguredChannels.js";
 import UserFlashcards from "../../database/UserFlashcards.js";
 import Flashcard from "../../datastructures/Flashcard.js";
 import FlashcardSender from "../../interactions/FlashcardSender.js";
@@ -25,7 +25,7 @@ export default function declareOnMessageResponse(client:Client) {
     if(!msg.member) // Leave if not in a guild
       return;
     
-    const popupProbability = ActiveChannels.getPopupProbaForChannel(channel.id);
+    const popupProbability = ConfiguredChannels.getPopupProbaForChannel(channel.id);
     //FIXME - It's currently impossible to get flashcards since channels cannot be configured
     if(!popupProbability) // If the channel was never configured
       return;
