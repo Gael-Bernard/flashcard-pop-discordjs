@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 
 import { SlashCommandExe } from "../rawCommands";
 
@@ -8,6 +8,8 @@ const configure: SlashCommandExe = {
   slashCommand:
     new SlashCommandBuilder().setName("configure")
     .setDescription('Bans a user from the guild.')
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
+    
     .addSubcommand((subcommand) => subcommand
         .setName('probability')
         .setDescription('Change the probability that a flashcard pop up on every new message')
