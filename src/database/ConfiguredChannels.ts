@@ -1,6 +1,7 @@
 import Flashcard from "../datastructures/Flashcard.js";
 import FlashcardChannel, { FlashcardChannelAllopt } from "../datastructures/FlashcardChannel.js";
 import { ChannelNotConfiguredError } from "./exceptions/ConfiguredChannelsError.js";
+import ConfiguredChannelsLocalDB from "./exceptions/local_database/ConfiguredChannelsLocalDB.js";
 
 
 /**
@@ -31,6 +32,7 @@ export default class ConfiguredChannels {
     channel.uuid = uuid;
 
     this.channelFlashcards.set(uuid, channel);
+    this.saveDatabase();
     return Object.assign({}, channel);
   }
 
@@ -78,6 +80,7 @@ export default class ConfiguredChannels {
       throw new ChannelNotConfiguredError(uuid);
 
     channel.currentFlashcard = Object.assign({}, flashcard);
+    this.saveDatabase();
   }
 
 
@@ -93,6 +96,7 @@ export default class ConfiguredChannels {
       return false;
     
     channel.currentFlashcard = undefined;
+    this.saveDatabase();
     return true;
   }
 
@@ -120,6 +124,29 @@ export default class ConfiguredChannels {
       throw new ChannelNotConfiguredError(uuid);
     
     channel.popProbability = probability;
+    this.saveDatabase();
+  }
+
+
+  /**
+   * Initialises the database if necessary before it can actually be used
+   */
+  public static async initDatabase(): Promise<void> {
+    return new Promise<void>(success => {
+      
+      this.channelFlashcards = ConfiguredChannelsLocalDB.load();
+      console.log(this.channelFlashcards)
+
+    });
+  }
+
+
+  public static async saveDatabase(): Promise<void> {
+    return new Promise<void>(success => {
+
+      ConfiguredChannelsLocalDB.save(this.channelFlashcards);
+
+    });
   }
 
 
