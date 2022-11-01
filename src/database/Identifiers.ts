@@ -64,7 +64,7 @@ export class Identifiers {
       const cNext = this.nextChar.get(c);
       
       if(cNext)
-        return id.slice(0, i)+cNext+id.slice(i+1, id.length);
+        return id.slice(0, i)+cNext+"0".repeat(id.length - i - 1);
     }
 
     // If the value cannot be increased while keeping the same number of digits,
