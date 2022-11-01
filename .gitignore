@@ -1,4 +1,5 @@
 .env
-node_modules/*
+local_database/*
 
+node_modules/*
 dist/*
