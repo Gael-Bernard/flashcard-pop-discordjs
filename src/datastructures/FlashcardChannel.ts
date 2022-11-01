@@ -4,7 +4,7 @@ import Flashcard from "./Flashcard.js"
 /**
  * Data of a FlashcardChannel stored in the database
  */
-type FlashcardChannelForDB = {
+export type FlashcardChannelForDB = {
   uuid: string,
   popProbability: number
 }

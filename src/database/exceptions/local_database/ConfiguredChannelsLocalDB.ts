@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "fs"
 
-import FlashcardChannel from "../../../datastructures/FlashcardChannel";
+import FlashcardChannel, { FlashcardChannelForDB } from "../../../datastructures/FlashcardChannel";
 
 
 export default class ConfiguredChannelsLocalDB {
@@ -36,8 +36,13 @@ export default class ConfiguredChannelsLocalDB {
 
 
   public static save(channelConfigs: Map<string,FlashcardChannel>): void {
-    const mapArray = Array.from(channelConfigs);
-    writeFileSync("local_database/flashcard_channels.json", JSON.stringify(mapArray) );
+    const mapArray: [string,FlashcardChannel][] = Array.from(channelConfigs);
+    const mapArrayWithoutFlashcard: [string,FlashcardChannelForDB][] = mapArray.map(couple => { return [ couple[0], {
+        uuid: couple[1].uuid,
+        popProbability: couple[1].popProbability
+      }]
+    });
+    writeFileSync("local_database/flashcard_channels.json", JSON.stringify(mapArrayWithoutFlashcard) );
   }
 
 
