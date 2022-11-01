@@ -1,13 +1,25 @@
+import { readFileSync, writeFileSync } from "fs";
+
+import FieldNotFoundError from "./exceptions/IdNotFountError.js";
+
+
 export class Identifiers {
 
-  private static nextFlashcardId: string = "0";
+  private static nextFlashcardId: string = "";
 
   
   /**
    * Initialises this class. Necessary before using
    */
   public static async init(): Promise<void> {
-    // TODO
+    const json: string = readFileSync("local_database/ids.json", "utf-8").toString();
+    const obj = JSON.parse(json);
+
+    if(!obj.nextFlashcardId)
+      throw new FieldNotFoundError("nextFlashCardId");
+
+
+    this.nextFlashcardId = obj.nextFlashCardId;
   }
   
 
@@ -15,7 +27,11 @@ export class Identifiers {
    * Saves the next IDs in a file
    */
   private static async save(): Promise<void> {
-    // TODO
+    const obj = {
+      nextFlashcardId: this.nextFlashcardId
+    }
+    
+    writeFileSync("local_database/ids.json", JSON.stringify(obj));
   }
 
 
