@@ -16,7 +16,7 @@ export default class ConfiguredChannels {
   };
 
 
-  protected static channelFlashcards: Map<string, FlashcardChannel> = new Map<string, FlashcardChannel>();
+  protected static configuredChannels: Map<string, FlashcardChannel> = new Map<string, FlashcardChannel>();
 
 
   /**
@@ -31,7 +31,7 @@ export default class ConfiguredChannels {
     const channel: FlashcardChannel = Object.assign(default_config, configuration);
     channel.uuid = uuid;
 
-    this.channelFlashcards.set(uuid, channel);
+    this.configuredChannels.set(uuid, channel);
     this.saveDatabase();
     return Object.assign({}, channel);
   }
@@ -43,7 +43,7 @@ export default class ConfiguredChannels {
    * @returns information about the channel, or undefined if this channel wasn't defined
    */
   public static getChannel(uuid:string): FlashcardChannel|undefined {
-    const channel = this.channelFlashcards.get(uuid);
+    const channel = this.configuredChannels.get(uuid);
     if(!channel)
       return undefined;
     
@@ -75,7 +75,7 @@ export default class ConfiguredChannels {
    */
   public static setFlashcardForChannel(uuid:string, flashcard:Flashcard): void {
     
-    const channel = this.channelFlashcards.get(uuid);
+    const channel = this.configuredChannels.get(uuid);
     if(!channel)
       throw new ChannelNotConfiguredError(uuid);
 
@@ -91,7 +91,7 @@ export default class ConfiguredChannels {
    */
   public static clearChannelFromFlashcard(uuid:string): boolean {
     
-    const channel = this.channelFlashcards.get(uuid);
+    const channel = this.configuredChannels.get(uuid);
     if(!channel)
       return false;
     
@@ -119,7 +119,7 @@ export default class ConfiguredChannels {
    */
   public static setPopupProbaForChannel(uuid:string, probability:number): void {
     
-    const channel = this.channelFlashcards.get(uuid);
+    const channel = this.configuredChannels.get(uuid);
     if(!channel)
       throw new ChannelNotConfiguredError(uuid);
     
@@ -134,8 +134,8 @@ export default class ConfiguredChannels {
   public static async initDatabase(): Promise<void> {
     return new Promise<void>(success => {
       
-      this.channelFlashcards = ConfiguredChannelsLocalDB.load();
-      console.log(this.channelFlashcards)
+      this.configuredChannels = ConfiguredChannelsLocalDB.load();
+      console.log(this.configuredChannels)
 
     });
   }
@@ -144,7 +144,7 @@ export default class ConfiguredChannels {
   public static async saveDatabase(): Promise<void> {
     return new Promise<void>(success => {
 
-      ConfiguredChannelsLocalDB.save(this.channelFlashcards);
+      ConfiguredChannelsLocalDB.save(this.configuredChannels);
 
     });
   }
