@@ -1,7 +1,7 @@
 import Flashcard from "../datastructures/Flashcard.js";
 import FlashcardChannel, { FlashcardChannelAllopt } from "../datastructures/FlashcardChannel.js";
 import { ChannelNotConfiguredError } from "./exceptions/ConfiguredChannelsError.js";
-import ConfiguredChannelsLocalDB from "./exceptions/local_database/ConfiguredChannelsLocalDB.js";
+import ConfiguredChannelsLocalDB from "./local_database/ConfiguredChannelsLocalDB.js";
 
 
 /**

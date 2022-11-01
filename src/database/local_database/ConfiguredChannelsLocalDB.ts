@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "fs"
 
-import FlashcardChannel, { FlashcardChannelForDB } from "../../../datastructures/FlashcardChannel";
+import FlashcardChannel, { FlashcardChannelForDB } from "../../datastructures/FlashcardChannel";
 
 
 export default class ConfiguredChannelsLocalDB {
