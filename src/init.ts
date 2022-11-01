@@ -1,4 +1,5 @@
 import ConfiguredChannels from "./database/ConfiguredChannels.js";
+import { Identifiers } from "./database/Identifiers.js";
 
 
 /**
@@ -7,6 +8,7 @@ import ConfiguredChannels from "./database/ConfiguredChannels.js";
 export default async function initializeApplication() {
 
   // Initialise database(s)
+  await Identifiers.init();
   await ConfiguredChannels.initDatabase();
   
 }
