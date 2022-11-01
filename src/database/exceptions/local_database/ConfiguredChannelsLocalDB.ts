@@ -9,16 +9,28 @@ export default class ConfiguredChannelsLocalDB {
     //FIXME - No verification, hazardous
     
     const file = readFileSync("local_database/flashcard_channels.json").toString();
-    const channelsArray = JSON.parse(file);
+    const raw = JSON.parse(file);
 
-    const channels = channelsArray.map( el => [el[0],
-      {
-        uuid: el[1].uuid,
-        popProbability: el[1].popProbability,
-        
+    const channels = new Array();
+    raw.forEach(el => {
+      
+      try {
+        channels.push( [el[0],
+          {
+            uuid: el[1].uuid,
+            popProbability: el[1].popProbability,
+          }
+        ]);
       }
-    ]);
+      catch(error) {
+        console.error("Object could not be read from local file : ");
+        console.error(el);
+      } 
+
+    });
     
+    // @ts-ignore
+    console.log(`Successfully loaded ${channels.length} out of ${raw.length} configured channels from local storages.`)
     return new Map<string, FlashcardChannel>( channels );
   }
 

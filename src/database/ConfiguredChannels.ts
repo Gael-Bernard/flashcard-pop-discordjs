@@ -135,7 +135,6 @@ export default class ConfiguredChannels {
     return new Promise<void>(success => {
       
       this.configuredChannels = ConfiguredChannelsLocalDB.load();
-      console.log(this.configuredChannels)
 
     });
   }
@@ -145,6 +144,7 @@ export default class ConfiguredChannels {
     return new Promise<void>(success => {
 
       ConfiguredChannelsLocalDB.save(this.configuredChannels);
+      success();
 
     });
   }
