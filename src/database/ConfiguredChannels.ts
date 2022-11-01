@@ -41,7 +41,11 @@ export default class ConfiguredChannels {
    * @returns information about the channel, or undefined if this channel wasn't defined
    */
   public static getChannel(uuid:string): FlashcardChannel|undefined {
-    return this.channelFlashcards.get(uuid);
+    const channel = this.channelFlashcards.get(uuid);
+    if(!channel)
+      return undefined;
+    
+    return Object.assign({}, channel);
   }
 
 
