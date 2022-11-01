@@ -23,7 +23,7 @@ const answer: SlashCommandExe = {
 
       const flashcard: Flashcard|undefined = ConfiguredChannels.getFlashcardForChannel(channel.id);
       if(!flashcard) { // If the channel doesn't have an active flashcard
-        interaction.reply({content: "This channel doesn't have any active flashcard!"});
+        interaction.reply({content: "This channel doesn't have any active flashcard!", ephemeral:true});
         return;
       }
       
