@@ -73,7 +73,7 @@ export default class ConfiguredChannels {
    */
   public static setFlashcardForChannel(uuid:string, flashcard:Flashcard): void {
     
-    const channel = this.getChannel(uuid);
+    const channel = this.channelFlashcards.get(uuid);
     if(!channel)
       throw new ChannelNotConfiguredError(uuid);
 
@@ -88,7 +88,7 @@ export default class ConfiguredChannels {
    */
   public static clearChannelFromFlashcard(uuid:string): boolean {
     
-    const channel = this.getChannel(uuid);
+    const channel = this.channelFlashcards.get(uuid);
     if(!channel)
       return false;
     
@@ -115,7 +115,7 @@ export default class ConfiguredChannels {
    */
   public static setPopupProbaForChannel(uuid:string, probability:number): void {
     
-    const channel = this.getChannel(uuid);
+    const channel = this.channelFlashcards.get(uuid);
     if(!channel)
       throw new ChannelNotConfiguredError(uuid);
     
