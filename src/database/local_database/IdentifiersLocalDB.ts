@@ -1,9 +1,9 @@
 import { readFileSync, writeFileSync } from "fs";
 
-import FieldNotFoundError from "./exceptions/IdNotFountError.js";
+import FieldNotFoundError from "../exceptions/IdNotFountError.js";
 
 
-export class Identifiers {
+export class IdentifiersLocalDB {
 
   private static nextFlashcardId: string = "";
 
@@ -84,7 +84,6 @@ export class Identifiers {
 
     return id;
   }
-
 
 }
 
