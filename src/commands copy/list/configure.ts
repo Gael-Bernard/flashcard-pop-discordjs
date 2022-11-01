@@ -1,6 +1,7 @@
 import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 
-import { SlashCommandExe } from "../rawCommands";
+import { SlashCommandExe } from "../rawCommands.js";
+import executeProbability from "./configure/probability.js";
 
 
 const configure: SlashCommandExe = {
@@ -9,7 +10,7 @@ const configure: SlashCommandExe = {
     new SlashCommandBuilder().setName("configure")
     .setDescription('Bans a user from the guild.')
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
-    
+
     .addSubcommand((subcommand) => subcommand
         .setName('probability')
         .setDescription('Change the probability that a flashcard pop up on every new message')
@@ -25,7 +26,16 @@ const configure: SlashCommandExe = {
 
   ,execute:
     function execute(interaction:ChatInputCommandInteraction) {
-      interaction.reply({content: "Pong!"});
+      const subcommand: string = interaction.options.getSubcommand();
+
+      if(subcommand === "probability") {
+        executeProbability(interaction);
+      }
+
+      else {
+        interaction.reply(`Error: unknown subcommand ${subcommand}`);
+      }
+
     }
 }
 

@@ -30,7 +30,7 @@ export default function declareOnMessageResponse(client:Client) {
     if(!popupProbability) // If the channel was never configured
       return;
 
-    if(Math.random() < popupProbability) // We randomly choose to give a flashcard or not
+    if(Math.random() > popupProbability) // We randomly choose to give a flashcard or not
       return;
     
     
