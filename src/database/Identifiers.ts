@@ -64,6 +64,7 @@ export class Identifiers {
   public static generateFlashcardId(): string {
     const id = this.nextFlashcardId;
     this.nextFlashcardId = this.computeIdAfter(id);
+    this.save();
 
     return id;
   }
