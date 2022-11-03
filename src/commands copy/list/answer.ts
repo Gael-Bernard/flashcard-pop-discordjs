@@ -33,8 +33,8 @@ const answer: SlashCommandExe = {
         return;
       }
       
-      if(guess.toLowerCase() == flashcard.back.toLowerCase()) {
-        interaction.reply({content: `You are right, it was **${flashcard.back}** ! Congratulations ${interaction.user} !`});
+      if( flashcard.back.some(solution => solution.toLocaleLowerCase() === guess.toLowerCase()) ) {
+        interaction.reply({content: `You are right, it was **${guess}** ! Congratulations ${interaction.user} !`});
         ConfiguredChannels.clearChannelFromFlashcard(channel.id);
       }
       else {
