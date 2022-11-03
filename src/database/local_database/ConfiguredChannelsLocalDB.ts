@@ -6,7 +6,6 @@ import FlashcardChannel, { FlashcardChannelForDB } from "../../datastructures/Fl
 export default class ConfiguredChannelsLocalDB {
 
   public static load(): Map<string, FlashcardChannel> {
-    //FIXME - No verification, hazardous
     
     const file = readFileSync("local_database/flashcard_channels.json").toString();
     const raw = JSON.parse(file);
