@@ -1,6 +1,9 @@
 import { readFileSync, writeFileSync } from "fs"
 
 import FlashcardChannel, { FlashcardChannelForDB } from "../../datastructures/FlashcardChannel";
+import FlashcardCollection from "../../datastructures/FlashcardCollection";
+import FlashcardCollectionNotFoundError from "../exceptions/FlashcardCollectionNotFoundError";
+import FlashcardCollections from "../FlashcardCollections";
 
 
 export default class ConfiguredChannelsLocalDB {
@@ -18,7 +21,7 @@ export default class ConfiguredChannelsLocalDB {
           {
             uuid: el[1].uuid,
             popProbability: el[1].popProbability,
-            collections: el[1].collections.map(uuid => ) // get collection from UUID
+            collections: el[1].collections.map(uuid => errorIfUndefinedCollection(uuid)) // get collection from UUID
           }
         ]);
       }
@@ -47,4 +50,15 @@ export default class ConfiguredChannelsLocalDB {
   }
 
 
+}
+
+
+
+async function errorIfUndefinedCollection(uuid: string): Promise<FlashcardCollection> {
+  
+  const collection = await FlashcardCollections.getCollection(uuid);
+  if(!collection)
+    throw new FlashcardCollectionNotFoundError(uuid);
+
+  return collection;
 }

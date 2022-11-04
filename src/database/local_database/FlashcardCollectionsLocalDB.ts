@@ -6,7 +6,7 @@ import FlashcardNotFoundError from "../exceptions/FlashcardNotFoundError";
 import Flashcards from "../Flashcards";
 
 
-export default class ConfiguredChannelsLocalDB {
+export default class FlashcardCollectionsLocalDB {
 
   public static load(): Map<string, FlashcardCollection> {
     

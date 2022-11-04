@@ -6,6 +6,7 @@ import FieldNotFoundError from "../exceptions/IdNotFountError.js";
 export class IdentifiersLocalDB {
 
   private static nextFlashcardId: string = "";
+  private static nextFlashcardCollectionId: string = "";
 
   
   /**
@@ -17,9 +18,11 @@ export class IdentifiersLocalDB {
 
     if(!obj.nextFlashcardId)
       throw new FieldNotFoundError("nextFlashCardId");
-
+    if(!obj.nextFlashcardCollectionId)
+      throw new FieldNotFoundError("nextFlashcardCollectionId");
 
     this.nextFlashcardId = obj.nextFlashCardId;
+    this.nextFlashcardCollectionId = obj.nextFlashcardCollectionId;
   }
   
 
@@ -28,7 +31,8 @@ export class IdentifiersLocalDB {
    */
   private static async save(): Promise<void> {
     const obj = {
-      nextFlashcardId: this.nextFlashcardId
+      nextFlashcardId: this.nextFlashcardId,
+      nextFlashcardCollectionId: this.nextFlashcardCollectionId
     }
     
     writeFileSync("local_database/ids.json", JSON.stringify(obj));
@@ -80,6 +84,19 @@ export class IdentifiersLocalDB {
   public static generateFlashcardId(): string {
     const id = this.nextFlashcardId;
     this.nextFlashcardId = this.computeIdAfter(id);
+    this.save();
+
+    return id;
+  }
+
+
+  /**
+   * Returns a unique flashcard collection ID, that will never be given again
+   * @returns unique collection flashcard ID
+   */
+  public static generateFlashcardCollectionId(): string {
+    const id = this.nextFlashcardCollectionId;
+    this.nextFlashcardCollectionId = this.computeIdAfter(id);
     this.save();
 
     return id;
