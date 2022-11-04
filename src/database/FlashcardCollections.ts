@@ -1,7 +1,7 @@
-import { FlashcardChannelAllopt } from "../datastructures/FlashcardChannel";
+import { FlashcardChannelAllopt } from "../datastructures/FlashcardChannel.js";
 import FlashcardCollection from "../datastructures/FlashcardCollection.js";
 import FlashcardCollectionsLocalDB from "./local_database/FlashcardCollectionsLocalDB.js";
-import { IdentifiersLocalDB } from "./local_database/IdentifiersLocalDB";
+import { IdentifiersLocalDB } from "./local_database/IdentifiersLocalDB.js";
 
 /**
  * All the methods to access collections of flashcards

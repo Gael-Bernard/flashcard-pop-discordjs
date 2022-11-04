@@ -1,9 +1,9 @@
 import { readFileSync, writeFileSync } from "fs"
 
-import FlashcardChannel, { FlashcardChannelForDB } from "../../datastructures/FlashcardChannel";
-import FlashcardCollection from "../../datastructures/FlashcardCollection";
-import FlashcardCollectionNotFoundError from "../exceptions/FlashcardCollectionNotFoundError";
-import FlashcardCollections from "../FlashcardCollections";
+import FlashcardChannel, { FlashcardChannelForDB } from "../../datastructures/FlashcardChannel.js";
+import FlashcardCollection from "../../datastructures/FlashcardCollection.js";
+import FlashcardCollectionNotFoundError from "../exceptions/FlashcardCollectionNotFoundError.js";
+import FlashcardCollections from "../FlashcardCollections.js";
 
 
 export default class ConfiguredChannelsLocalDB {

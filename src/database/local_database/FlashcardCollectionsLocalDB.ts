@@ -2,8 +2,8 @@ import { readFileSync, writeFileSync } from "fs"
 import Flashcard from "../../datastructures/Flashcard";
 
 import FlashcardCollection, { FlashcardCollectionForDB } from "../../datastructures/FlashcardCollection.js";
-import FlashcardNotFoundError from "../exceptions/FlashcardNotFoundError";
-import Flashcards from "../Flashcards";
+import FlashcardNotFoundError from "../exceptions/FlashcardNotFoundError.js";
+import Flashcards from "../Flashcards.js";
 
 
 export default class FlashcardCollectionsLocalDB {
