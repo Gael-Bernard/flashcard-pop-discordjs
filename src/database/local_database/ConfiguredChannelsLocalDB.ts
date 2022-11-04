@@ -10,7 +10,7 @@ export default class ConfiguredChannelsLocalDB {
     const file = readFileSync("local_database/flashcard_channels.json").toString();
     const raw = JSON.parse(file);
 
-    const channels = new Array();
+    const channels: [string,FlashcardChannel][] = new Array();
     raw.forEach(el => {
       
       try {
@@ -18,6 +18,7 @@ export default class ConfiguredChannelsLocalDB {
           {
             uuid: el[1].uuid,
             popProbability: el[1].popProbability,
+            collections: el[1].collections.map(uuid => ) // get collection from UUID
           }
         ]);
       }
@@ -38,7 +39,8 @@ export default class ConfiguredChannelsLocalDB {
     const mapArray: [string,FlashcardChannel][] = Array.from(channelConfigs);
     const mapArrayWithoutFlashcard: [string,FlashcardChannelForDB][] = mapArray.map(couple => { return [ couple[0], {
         uuid: couple[1].uuid,
-        popProbability: couple[1].popProbability
+        popProbability: couple[1].popProbability,
+        collections: couple[1].collections.map(fc => fc.uuid)
       }]
     });
     writeFileSync("local_database/flashcard_channels.json", JSON.stringify(mapArrayWithoutFlashcard) );

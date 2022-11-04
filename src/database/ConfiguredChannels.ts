@@ -12,7 +12,8 @@ export default class ConfiguredChannels {
   private static DEFAULT_FLASHCARDCHANNEL: FlashcardChannel = {
     uuid: "NEVER DEFINED",
     popProbability: 0.02,
-    currentFlashcard: undefined
+    currentFlashcard: undefined,
+    collections: []
   };
 
 
