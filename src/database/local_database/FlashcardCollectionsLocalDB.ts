@@ -31,7 +31,6 @@ export default class FlashcardCollectionsLocalDB {
 
     });
     
-    // @ts-ignore
     console.log(`Successfully loaded ${collections.length} out of ${raw.length} collections from local storages.`)
     return new Map<string, FlashcardCollection>( collections );
   }

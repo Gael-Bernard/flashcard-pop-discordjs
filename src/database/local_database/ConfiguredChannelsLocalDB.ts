@@ -32,7 +32,6 @@ export default class ConfiguredChannelsLocalDB {
 
     });
     
-    // @ts-ignore
     console.log(`Successfully loaded ${channels.length} out of ${raw.length} configured channels from local storages.`)
     return new Map<string, FlashcardChannel>( channels );
   }

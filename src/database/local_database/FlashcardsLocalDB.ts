@@ -29,8 +29,7 @@ export default class FlashcardsLocalDB {
 
     });
     
-    // @ts-ignore
-    console.log(`Successfully loaded ${channels.length} out of ${raw.length} flashcards from local storages.`)
+    console.log(`Successfully loaded ${flashcards.length} out of ${raw.length} flashcards from local storages.`)
     return new Map<string, Flashcard>( flashcards );
   }
 
