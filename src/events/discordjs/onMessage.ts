@@ -1,7 +1,7 @@
 import { Client, TextChannel } from "discord.js";
 
 import ConfiguredChannels from "../../database/ConfiguredChannels.js";
-import UserFlashcards from "../../database/UserFlashcards.js";
+import Flashcards from "../../database/Flashcards.js";
 import Flashcard from "../../datastructures/Flashcard.js";
 import FlashcardSender from "../../interactions/FlashcardSender.js";
 import GuildAllFlashcard from "../../interactions/guild_all_flashcard_popup/GuildAllFlashcard.js";
@@ -35,7 +35,7 @@ export default function declareOnMessageResponse(client:Client) {
     
     
     // Get the user's flashcards and check if there's at least one
-    const flashcards:Array<Flashcard> = await UserFlashcards.getFlashcardsOf(msg.author.id);
+    const flashcards:Array<Flashcard> = await Flashcards.getFlashcardsOf(msg.author.id);
     const flashcard: Flashcard|undefined = flashcards.at( Math.trunc( flashcards.length * Math.random() ) );
     if(!flashcard) { // If the user has no flashcard
       return;

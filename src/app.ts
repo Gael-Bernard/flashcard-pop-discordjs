@@ -5,7 +5,7 @@ import { Client, Events, GatewayIntentBits } from "discord.js"
 
 import initializeApplication from "./init.js";
 import declareOnMessageResponse from "./events/discordjs/onMessage.js";
-import registerCommands from "./commands copy/cmdInit.js";
+import registerCommands from "./slashcommands/cmdInit.js";
 
 
 const client = new Client({intents: [
