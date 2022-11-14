@@ -2,7 +2,7 @@ import { EmbedBuilder, GuildChannel, GuildMember, TextChannel } from "discord.js
 
 import ConfiguredChannels from "../../database/ConfiguredChannels.js";
 import Flashcard from "../../datastructures/Flashcard.js";
-import FlashcardSender from "../FlashcardSender.js";
+import FlashcardSender from "./FlashcardSender.js";
 
 /**
  * Object used to send "guild all" flashcards. 
@@ -40,7 +40,6 @@ export default class GuildAllFlashcard extends FlashcardSender {
   public send() {
     const embed:EmbedBuilder = this.createFlashcardPopup();
     this.channel.send({ embeds:[embed] });
-    ConfiguredChannels.setFlashcardForChannel(this.channel.id, this.flashcard);
   }
 
 }
