@@ -2,6 +2,7 @@ import { SharedSlashCommandOptions, SlashCommandBuilder } from "discord.js";
 
 import answer from "./list/answer.js";
 import configure from "./list/configure.js";
+import flashcard from "./list/flashcard.js";
 import ping from "./list/ping.js";
 
 
@@ -21,6 +22,7 @@ import ping from "./list/ping.js";
 const rawCommands: SlashCommandExe[] = [
   ping,
   answer,
+  flashcard,
   configure
 ]
 export default rawCommands;

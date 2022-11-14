@@ -3,8 +3,8 @@ import { Client, TextChannel } from "discord.js";
 import ConfiguredChannels from "../../database/ConfiguredChannels.js";
 import Flashcards from "../../database/Flashcards.js";
 import Flashcard from "../../datastructures/Flashcard.js";
-import FlashcardSender from "../../interactions/FlashcardSender.js";
-import GuildAllFlashcard from "../../interactions/guild_all_flashcard_popup/GuildAllFlashcard.js";
+import FlashcardSender from "../../interactions/flashcard_popups/FlashcardSender.js";
+import GuildAllFlashcard from "../../interactions/flashcard_popups/GuildAllFlashcard.js";
 
 /* NOTE Messages contain an empty msg.content, because a specific intent is necessary to access the content. Though we don't need it */
 
@@ -44,6 +44,7 @@ export default function declareOnMessageResponse(client:Client) {
     
     // Send the flashcard
     const sender:FlashcardSender = new GuildAllFlashcard(channel, flashcard, msg.member);
+    ConfiguredChannels.setFlashcardForChannel(this.channel.id, this.flashcard);
     sender.send();
     
   });
