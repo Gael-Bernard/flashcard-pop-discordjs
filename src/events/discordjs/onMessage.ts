@@ -3,8 +3,8 @@ import { Client, TextChannel } from "discord.js";
 import ConfiguredChannels from "../../database/ConfiguredChannels.js";
 import Flashcards from "../../database/Flashcards.js";
 import Flashcard from "../../datastructures/Flashcard.js";
-import FlashcardSender from "../../interactions/flashcard_popups/FlashcardSender.js";
-import GuildAllFlashcard from "../../interactions/flashcard_popups/GuildAllFlashcard.js";
+import FlashcardSender from "../../embeds/flashcard_popups/FlashcardSender.js";
+import GuildAllFlashcard from "../../embeds/flashcard_popups/GuildAllFlashcard.js";
 
 /* NOTE Messages contain an empty msg.content, because a specific intent is necessary to access the content. Though we don't need it */
 
