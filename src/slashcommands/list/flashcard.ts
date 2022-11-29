@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 
 import { SlashCommandExe } from "../rawCommands";
-import executeList from "./flashcard/list";
+import executeList from "./flashcard/list.js";
 
 
 const flashcard: SlashCommandExe = {
