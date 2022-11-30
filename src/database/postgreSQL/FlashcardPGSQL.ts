@@ -1,6 +1,6 @@
 import Flashcard from "../abstract/Flashcard.js"
 import FlashcardCollection from "../abstract/FlashcardCollection.js";
-import FlashcardUser from "../abstract/FlashcardUser.js";
+
 
 export default class FlashcardPGSQL implements Flashcard {
 
@@ -12,45 +12,45 @@ export default class FlashcardPGSQL implements Flashcard {
   private collection_id: number;
 
 
-  getId(): number {
+  public getId(): number {
     return this.flashcard_id;
   }
 
 
-  getQuestion(): string {
+  public getQuestion(): string {
     return this.question;
   }
 
-  setQuestion(newQuestion: string): Promise<void> {
+  public setQuestion(newQuestion: string): Promise<void> {
     throw new Error("Method not implemented."); // TODO
   }
 
 
-  getAnswerAt(index: number): string|undefined {
+  public getAnswerAt(index: number): string|undefined {
     return this.answers.at(index);
   }
 
-  getAnswers(): string[] {
+  public getAnswers(): string[] {
     return [...this.answers];
   }
   
-  addAnswer(newAnswer: string): Promise<void> {
+  public addAnswer(newAnswer: string): Promise<void> {
     throw new Error("Method not implemented."); // TODO
   }
 
-  setAnswers(newAnswers: string[]): Promise<void> {
+  public setAnswers(newAnswers: string[]): Promise<void> {
     throw new Error("Method not implemented."); // TODO
   }
 
 
-  getCreationDate(): Date {
+  public getCreationDate(): Date {
     return new Date(this.creation_date.getTime());
   }
-  getCollectionId(): Promise<number> {
+  public getCollectionId(): Promise<number> {
     return new Promise<number>(() => this.collection_id);
   }
 
-  getCollection(): Promise<FlashcardCollection> {
+  public getCollection(): Promise<FlashcardCollection> {
     throw new Error("Method not implemented.");
   }
   
