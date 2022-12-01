@@ -46,7 +46,7 @@ export default interface FlashcardCollection {
    * @param id unique identifier of the flashcard
    * @returns "OK" if it worked, "NOTFOUND" if the flashcard was not found in database
    */
-  deleteFlashcard(id: number): Promise<"OK"|"NOTFOUND|NOTOWNED">;
+  deleteFlashcard(id: number): Promise<"OK"|"NOTFOUND"|"NOTOWNED">;
 
 
   /**
