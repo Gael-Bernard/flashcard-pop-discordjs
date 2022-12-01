@@ -42,11 +42,11 @@ export default interface FlashcardCollection {
    */
   addFlashcard(question: string, answers: string[]): Promise<Flashcard>;
   /**
-   * Removes a flashcard from this collection and updates the database accordingly
+   * Removes a flashcard from this collection forever and updates the database accordingly
    * @param id unique identifier of the flashcard
    * @returns "OK" if it worked, "NOTFOUND" if the flashcard was not found in database
    */
-  removeFlashcard(id: number): Promise<"OK"|"NOTFOUND">;
+  deleteFlashcard(id: number): Promise<"OK"|"NOTFOUND|NOTOWNED">;
 
 
   /**
