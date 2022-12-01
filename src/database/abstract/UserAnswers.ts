@@ -1,5 +1,5 @@
-import FlashcardCollection from "./FlashcardCollection";
-import FlashcardUser from "./FlashcardUser";
+import FlashcardCollection from "./FlashcardCollection.js";
+import FlashcardUser from "./FlashcardUser.js";
 
 export default interface UserAnswers {
 

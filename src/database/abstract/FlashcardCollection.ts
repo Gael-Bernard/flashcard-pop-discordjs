@@ -1,5 +1,5 @@
 import Flashcard from "./Flashcard.js";
-import FlashcardUser from "./FlashcardUser";
+import FlashcardUser from "./FlashcardUser.js";
 import UserAnswers from "./UserAnswers.js";
 
 export default interface FlashcardCollection {
